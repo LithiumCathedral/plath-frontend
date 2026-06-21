@@ -72,4 +72,35 @@
 <body>
 
     <header>
-        <div class="logo"><span>
+        <div class="logo"><span>PLATH</span>//ENGINE</div>
+        <div class="status">// ACCESS_GRANTED</div>
+    </header>
+
+    <div class="container">
+        <div class="success-box">
+            <h1>Verification Initialized</h1>
+            <p>Your portal access has been cleared. Input your matching telemetry coordinates below to generate your web story.</p>
+            
+            <form action="https://plath-backend-production.up.railway.app" method="POST">
+                <div class="form-group">
+                    <label for="fullName">Full Legal Birth Name</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="e.g., DEVON RICHARD ANTHONY">
+                </div>
+
+                <div class="form-group">
+                    <label for="currentName">Current Name (Common Use)</label>
+                    <input type="text" id="currentName" name="currentName" required placeholder="e.g., DEVN RATZ">
+                </div>
+
+                <div class="form-group">
+                    <label for="birthDate">Date of Birth</label>
+                    <input type="date" id="birthDate" name="birthDate" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Run Engine Calculations</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
