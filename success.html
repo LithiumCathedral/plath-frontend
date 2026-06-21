@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLATH // Access Granted</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .box {
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid #FF3300;
+            padding: 30px;
+            background-color: #111111;
+        }
+        h1 { font-size: 1.5rem; text-transform: uppercase; color: #FF3300; margin-top: 0; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; color: #FF3300; }
+        input { width: 100%; padding: 10px; background: #000; border: 1px solid #333; color: #FFF; font-family: inherit; box-sizing: border-box; }
+        input:focus { border-color: #FF3300; outline: none; }
+        button { width: 100%; padding: 12px; background: #FF3300; color: #000; border: none; font-weight: 600; text-transform: uppercase; cursor: pointer; font-family: inherit; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Verification Initialized</h1>
+        <p style="color: #999; font-size: 0.9rem;">Input telemetry coordinates to generate web story.</p>
+        
+        <form action="https://plathbackend-production.up.railway.app/generate-report" method="POST">
+            <div class="form-group">
+                <label>Full Legal Birth Name</label>
+                <input type="text" name="fullName" required placeholder="DEVON RICHARD ANTHONY">
+            </div>
+            <div class="form-group">
+                <label>Current Name</label>
+                <input type="text" name="currentName" required placeholder="DEVN RATZ">
+            </div>
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" name="birthDate" required>
+            </div>
+            <button type="submit">Run Engine Calculations</button>
+        </form>
+    </div>
+</body>
+</html>
