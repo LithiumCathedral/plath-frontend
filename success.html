@@ -106,7 +106,7 @@
         }
 
         input[type="date"] {
-            color-scheme: dark; /* Forces mobile browsers to show a dark layout calendar pop-up */
+            color-scheme: dark;
         }
 
         .action-btn {
@@ -129,6 +129,30 @@
             color: var(--black);
         }
 
+        /* Interactive loader panel overlay */
+        .loading-overlay {
+            display: none;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--dark);
+            z-index: 10;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .loader-log {
+            font-size: 0.75rem;
+            color: var(--orange);
+            margin-top: 15px;
+            text-align: left;
+            width: 100%;
+            max-width: 300px;
+            white-space: pre-line;
+        }
+
         .terminal-footer {
             margin-top: 30px;
             border-top: 1px dashed var(--border);
@@ -147,38 +171,66 @@
             <span class="status">ONLINE</span>
         </div>
 
-        <h1>Initialize Matrix Telemetry</h1>
-        <p>Input your parameter anchors to compute your unified structural blueprint and establish cross-device link access.</p>
+        <div id="formView">
+            <h1>Initialize Matrix Telemetry</h1>
+            <p>Input your parameter anchors to compute your unified structural blueprint and establish cross-device link access.</p>
 
-        <form action="https://plath-backend-production.up.railway.app/generate-report" method="POST">
-            
-            <div class="input-group">
-                <label for="email">System Access Email Anchor</label>
-                <input type="email" id="email" name="email" placeholder="name@domain.com" required>
-            </div>
+            <form action="https://plath-backend-production.up.railway.app/generate-report" method="POST" onsubmit="handleTelemetrySubmit(event, this)">
+                
+                <div class="input-group">
+                    <label for="email">System Access Email Anchor</label>
+                    <input type="email" id="email" name="email" placeholder="name@domain.com" required>
+                </div>
 
-            <div class="input-group">
-                <label for="fullName">Full Legal Birth Name</label>
-                <input type="text" id="fullName" name="fullName" placeholder="FIRST MIDDLE LAST" required autocomplete="off">
-            </div>
+                <div class="input-group">
+                    <label for="fullName">Full Legal Birth Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="FIRST MIDDLE LAST" required autocomplete="off" style="text-transform: uppercase;">
+                </div>
 
-            <div class="input-group">
-                <label for="currentName">Current Handle / Core Alias</label>
-                <input type="text" id="currentName" name="currentName" placeholder="DEFAULTS TO ANCHOR ALIAS" required autocomplete="off">
-            </div>
+                <div class="input-group">
+                    <label for="currentName">Current Handle / Core Alias</label>
+                    <input type="text" id="currentName" name="currentName" placeholder="ALIAS" required autocomplete="off" style="text-transform: uppercase;">
+                </div>
 
-            <div class="input-group">
-                <label for="birthDate">Temporal Date Record</label>
-                <input type="date" id="birthDate" name="birthDate" required>
-            </div>
+                <div class="input-group">
+                    <label for="birthDate">Temporal Date Record</label>
+                    <input type="date" id="birthDate" name="birthDate" required>
+                </div>
 
-            <button type="submit" class="action-btn">Run Engine Calculations</button>
-        </form>
+                <button type="submit" class="action-btn">Run Engine Calculations</button>
+            </form>
+        </div>
+
+        <div class="loading-overlay" id="loaderOverlay">
+            <h1 style="color: var(--orange);">PROCESSING VECTORS</h1>
+            <div class="loader-log" id="loaderLog">// Initializing handshake stream...</div>
+        </div>
 
         <div class="terminal-footer">
             DATA OWNERSHIP GUARANTEED FLAT // SYSTEM ENCRYPTED SECURE
         </div>
     </div>
 
+    <script>
+        function handleTelemetrySubmit(e, formInstance) {
+            // Force strict uppercase properties right before data stream serialization
+            document.getElementById('fullName').value = document.getElementById('fullName').value.toUpperCase().trim();
+            document.getElementById('currentName').value = document.getElementById('currentName').value.toUpperCase().trim();
+            
+            // Bring up the real-time terminal loader view instantly
+            document.getElementById('formView').style.display = 'none';
+            const overlay = document.getElementById('loaderOverlay');
+            overlay.style.display = 'flex';
+            
+            const logBox = document.getElementById('loaderLog');
+            
+            setTimeout(() => { logBox.innerHTML += '\n// Mapping variable coordinates...'; }, 600);
+            setTimeout(() => { logBox.innerHTML += '\n// Spawning core python process...'; }, 1200);
+            setTimeout(() => { logBox.innerHTML += '\n// Compiling matrix layout arrays...'; }, 1800);
+            
+            // Allow form to naturally commit payload downstream to backend
+            return true;
+        }
+    </script>
 </body>
 </html>
